@@ -1,7 +1,7 @@
-// LandingPage.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { APP_FEATURES } from ".../utils/data"; // Unused for now, but kept
+import INTERVIEW_IMAGE from "../../assets/interview image.png";
+import { LuSparkles } from 'react-icons/lu';
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -9,20 +9,23 @@ const LandingPage = () => {
   const [currentPage, setCurrentPage] = useState('Login');
 
   const handleCTA = () => {
+    setCurrentPage('Signup');
     setOpenAuthModal(true);
-    // Example navigation after modal:
     navigate('/signup');
   };
 
   return (
-    <div className="w-full min-h-screen bg-[#FFFCEF] relative overflow-hidden">
-      <div className="w-[500px] h-[500px] bg-amber-200/20 blur-[650px] absolute inset-0 m-auto" />
+    <div className="w-full min-h-screen bg-[#FFF3E0] relative overflow-hidden font-sans">
+      {/* Background blur */}
+      <div className="w-[800px] h-[800px] bg-amber-200/30 blur-[400px] rounded-full absolute -top-96 -left-96" />
+      <div className="w-[800px] h-[800px] bg-sky-200/30 blur-[400px] rounded-full absolute -bottom-96 -right-96" />
 
-      <div className="container mx-auto px-4 pt-6 pb-[200px] relative z-10">
-        <header className="flex justify-between items-center mb-16">
-          <div className="text-xl text-black font-bold">Interview Prep AI</div>
+      {/* Header */}
+      <div className="container mx-auto px-4 pt-6 pb-16 relative z-10">
+        <header className="flex justify-between items-center mb-20">
+          <div className="text-xl text-gray-800 font-bold">Interview Prep AI</div>
           <button
-            className="bg-gradient-to-r from-[#FF9324] to-[#e99a4b] text-sm font-semibold text-white px-7 py-2.5 rounded-full hover:bg-black hover:text-white transition-colors cursor-pointer"
+            className="bg-white text-sm font-semibold text-gray-700 px-7 py-2.5 rounded-full shadow-md border border-gray-200 hover:bg-gray-50 transition-colors"
             onClick={() => {
               setCurrentPage('Login');
               setOpenAuthModal(true);
@@ -32,29 +35,32 @@ const LandingPage = () => {
           </button>
         </header>
 
-        <div className="flex flex-col md:flex-row items-center">
-          <div className="w-full md:w-1/2 mb-8 md:mb-0">
-            <div className="flex items-center mb-2">
-              <span className="text-xs text-amber-600 font-semibold bg-amber-100 px-3 py-1 rounded-full border border-amber-300">
-                AI Powered
-              </span>
-            </div>
-            <h1 className="text-5xl text-black font-medium mb-6 leading-tight">
-              Ace Interview with <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF9324] to-[#FCD760] animate-pulse font-semibold">
-                AI Powered
+        {/* hero */}
+        {/* icon + heading */}
+        <div className="flex items-center gap-2 mb-4">
+          <LuSparkles className="text-amber-500 text-xl" />
+          <span className="text-xs text-amber-700 font-medium">AI Powered</span>
+        </div>
+
+        <div className="flex flex-col md:flex-row justify-between items-start mb-12">
+          {/* Heading */}
+          <div className="w-full md:w-7/12">
+            <h1 className="text-6xl text-gray-900 font-extrabold mb-0 leading-tight tracking-tight">
+              Ace Interviews with <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF9324] to-[#FCD760] animate-pulse">
+                AI‑Powered
               </span>{' '}
               Learning
             </h1>
           </div>
 
-          <div className="w-full md:w-1/2">
-            <p className="text-[17px] text-gray-900 mb-6 md:mb-0 md:mr-20">
-              Get personalized interview preparation with AI. Practice with real-time
-              feedback and improve your skills.
+          {/* Paragraph + button */}
+          <div className="w-full md:w-5/12 flex flex-col items-start md:items-end text-left md:text-right self-start">
+            <p className="text-lg text-gray-700 font-bold leading-relaxed mb-4 line-clamp-2">
+              Get role-specific questions, expand insights when you need them, dive deeper into concepts, and organize everything your way—from preparation to mastery — your ultimate interview toolkit is here.
             </p>
             <button
-              className="bg-black text-sm font-semibold text-white px-7 py-2.5 rounded-full hover:bg-yellow-100 hover:text-black border border-yellow-50 hover:border-yellow-300 transition-colors cursor-pointer"
+              className="bg-gray-800 text-base font-medium text-white px-8 py-3 rounded-full hover:bg-gray-700 transition-colors shadow-lg"
               onClick={handleCTA}
             >
               Get Started
@@ -63,11 +69,29 @@ const LandingPage = () => {
         </div>
       </div>
 
+      {/* Image */}
+      <div className="w-full relative z-10 pt-8 pb-12">
+        <section className="flex justify-center">
+          <img
+            src={INTERVIEW_IMAGE}
+            alt="Interview Preparation Overview"
+            className="w-[100vw] max-w-screen-xl rounded-xl shadow-2xl border border-gray-100"
+          />
+        </section>
+      </div>
+
+      {/* Auth Modal */}
       {openAuthModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-6 rounded-lg">
-            <h2>{currentPage}</h2>
-            <button onClick={() => setOpenAuthModal(false)}>Close</button>
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-8 rounded-lg shadow-xl relative">
+            <button
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-800 text-2xl"
+              onClick={() => setOpenAuthModal(false)}
+            >
+              &times;
+            </button>
+            <h2 className="text-2xl font-bold mb-4 text-gray-800">{currentPage}</h2>
+            <p className="text-gray-600">Authentication form goes here...</p>
           </div>
         </div>
       )}
