@@ -4,7 +4,8 @@ import { Toaster } from 'react-hot-toast';
 
 import LandingPage from "./pages/InterviewPrep/LandingPage";
 import Login from "./pages/Auth/Login";
-import SignUp from "./pages/Auth/SignUp";
+import SignUp from "./pages/Auth/signup";
+
 import Dashboard from "./pages/Home/Dashboard";
 import InterviewPrep from "./pages/InterviewPrep/components/InterviewPrep";
 
